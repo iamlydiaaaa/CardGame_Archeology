@@ -1,0 +1,11 @@
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\bin\Debug\Assignment2_Archeology.exe.config
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\bin\Debug\Assignment2_Archeology.exe
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\bin\Debug\Assignment2_Archeology.pdb
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csproj.AssemblyReference.cache
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csproj.SuggestedBindingRedirects.cache
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.Form1.resources
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.Properties.Resources.resources
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csproj.GenerateResource.cache
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csproj.CoreCompileInputs.cache
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.exe
+D:\김진경\COMPX102\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.pdb
