@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Assignment2_Archeology
 {
@@ -13,26 +10,26 @@ namespace Assignment2_Archeology
         public Deck()
         {
             //Card[]에 카드 72개를 집어 넣는다.
-            //cards_ = new Card[Card.NUM_CARDS];
-            cards_ = new Card[5];
-            int i = 0;
-            /*            for(int i=0; i<5; i++)
-                        {
-                            cards_[i] = new Card(CardFaceValue[i]);
-                        }*/
-            foreach (CardFaceValue val in Enum.GetValues(typeof(CardFaceValue)))
-            {
-                cards_[i] = new Card(val);
-                //i++;
-            }
+            cards_ = new Card[Card.NUM_CARDS];
+            //cards_ = new Card[5];
+            int i = 1;
 
-            ShuffleCards();
+                foreach (CardFaceValue value in Enum.GetValues(typeof(CardFaceValue)))
+                {
+                    cards_[i] = new Card(value);
+                    Console.WriteLine(cards_[i]);
+                    Console.WriteLine(value + "입니다아");
+                    i++;
+                }
+
+
+            //ShuffleCards();
         }
 
         public void ShuffleCards()
         {
         #if DETERMINISTIC //DEBUG
-            Random random = new Random(72);
+            Random random = new Random(20);
         #else
             Random rnd = new Random();
         #endif
@@ -57,7 +54,13 @@ namespace Assignment2_Archeology
             cards_[cardPos1] = cards_[cardPos2];
             cards_[cardPos2] = tmp;
         }
-
+        public void WriteLineAllCards()
+        {
+            foreach (Card card in cards_)
+            {
+                Debug.WriteLine(card);
+            }
+        }
 
 
 
