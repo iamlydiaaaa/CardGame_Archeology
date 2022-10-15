@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace Assignment2_Archeology
 {
-    //List<string> CardFaceValue = new List<>(shard, scrap, coin, talisman, cup, map, mask);
-    public enum CardFaceValue { shard, scrap, coin, talisman, cup, map, mask };
-    public enum CardNum { one,two,three,four,five };
+    //List<string> TreasureCardValue = new List<>(shard, scrap, coin, talisman, cup, map, mask);
+    public enum TreasureCardValue { shard, scrap, coin, talisman, cup, mask };
+
 
     public class Card
     {
-        public static int NUM_CARDS = 10;
+
+
         private const int CARD_GAP = 10;
 
-        private CardFaceValue value_;
-        private CardNum cardNum_;
+        private TreasureCardValue value_;
 
         private Image image_;
         private Image backImage_;
@@ -26,7 +26,7 @@ namespace Assignment2_Archeology
 
         public Card() { }
 
-        public Card(CardFaceValue value)
+        public Card(TreasureCardValue value)
         {
             value_ = value;
 
@@ -41,14 +41,13 @@ namespace Assignment2_Archeology
         public Card(Card card)
         {
             value_ = card.value_;
-            cardNum_ = card.cardNum_;
             image_ = card.image_;
         }
 
         /// <summary>
         /// A getter to get the faceValue of the card
         /// </summary>
-        public CardFaceValue FaceValue { get { return value_; } }
+        public TreasureCardValue FaceValue { get { return value_; } }
 
 
         /// <summary>
@@ -73,10 +72,10 @@ namespace Assignment2_Archeology
             int display_x_dim = pictureBox.Width; //그림의 가로세로값
             int display_y_dim = pictureBox.Height;
 
-            int x = CARD_GAP + image.Width ;
-            int y = display_y_dim + 10;
+            int y = 10;
 
-            graphics.DrawImage(image, x, y, 75, 125);
+            graphics.DrawImage(image, cardPos, y, 75, 125);
+            Console.WriteLine("그림 그렸음");
         }
         
         /// <summary>
