@@ -22,6 +22,12 @@ namespace Assignment2_Archeology
         List<Card> marketPlace = new List<Card>();
         List<Card> Listplayer1 = new List<Card>();
         List<Card> Listplayer2 = new List<Card>();
+
+        public List<Card>[] PyramidCards = new List<Card>[3];
+        List<Card> PyramidThree = new List<Card>();
+        List<Card> PyramidFive = new List<Card>();
+        List<Card> PyramidSeven = new List<Card>();
+
         Deck deck;
 
         bool trade = false;
@@ -31,6 +37,7 @@ namespace Assignment2_Archeology
             InitializeComponent();
             resource_manager = Properties.Resources.ResourceManager;
             deck = new Deck();
+            pictureBoxPyramidCenter.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void GetAHand()
@@ -45,7 +52,7 @@ namespace Assignment2_Archeology
             //make new random card lists
             for (int i = 0; i < NUM_CARDS; i++)
             {
-                Card card = deck.GetCard(i);
+                Treasure card = deck.GetCard(i);
                 //card.UnFlip();
                 deck_card.Add(card);
                 Console.WriteLine("deck_card[" + i + "] = " + deck_card[i]);
@@ -53,33 +60,40 @@ namespace Assignment2_Archeology
             }
             deck.ShuffleCards();
         }
-        private void getRandomCards(Graphics graphics, List<Card> playerList, int CardSize, int cp)
+        private void getRandomCards(Graphics graphics, List<Card> playerList, int CardSize, int cp, bool cardType)
         {
             Random rand = new Random();
-
-            int CardPos = cp;
-            int CARD_GAP = 80;
+            int CardPos = 10;
+            int CARD_GAP = 90;
 
             //draw cards
             for (int i = 0; i < CardSize; i++)
             {
                 int randNum = rand.Next(1, cardIndex);
                 playerList.Add(deck_card[randNum]);
-                Card c = playerList[i];
-
+                Treasure c = (Treasure)playerList[i];
                 deck_card.RemoveAt(randNum);
                 cardIndex--;
-                c.DrawCard(graphics, pictureBoxPlayer1, CardPos);
-                CardPos = CardPos + CARD_GAP;
+
+                //If the card type is not for pyramid cards, then execute the code
+                if (cardType)
+                {
+                    c.DrawCard(graphics, pictureBoxCenter, CardPos, c.Image);
+                    CardPos += CARD_GAP;
+                }
                 labelLeftover.Text = cardIndex.ToString();
+                Console.WriteLine(cardIndex.ToString());
             }
-            Console.WriteLine(cardIndex.ToString());
+
+            
         }
+
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            Graphics g = pictureBoxCenter.CreateGraphics();
             Graphics p1 = pictureBoxPlayer1.CreateGraphics();
             Graphics p2 = pictureBoxPlayer2.CreateGraphics();
-            Graphics p3 = pictureBoxCenter.CreateGraphics();
+            Graphics p3 = pictureBoxMarketPlace.CreateGraphics();
             //t = new System.Timers.Timer();
             //t.Elapsed += OnTimedEvent;
             //t.Interval = 10;
@@ -88,9 +102,10 @@ namespace Assignment2_Archeology
 
             cardIndex = 0;
             GetAHand();
-            getRandomCards(p1, Listplayer1,PLAYER_SIZE,10);
-            getRandomCards(p2, Listplayer2, PLAYER_SIZE,10);
-            getRandomCards(p3, marketPlace,5,10);
+            getRandomCards(p1, Listplayer1,PLAYER_SIZE,10,true);
+            getRandomCards(p2, Listplayer2, PLAYER_SIZE,10,true);
+            getRandomCards(p3, marketPlace,5,10,true);
+            getRandomCards(g, PyramidThree,3,10,false);
 
             Console.WriteLine(marketPlace.ToString());
 
@@ -112,7 +127,7 @@ namespace Assignment2_Archeology
         private void buttonDrawACard_Click(object sender, EventArgs e)
         {
             Graphics p1 = pictureBoxPlayer1.CreateGraphics();
-            getRandomCards(p1, Listplayer1, 1,350);
+            getRandomCards(p1, Listplayer1, 1,330,true);
         }
 
         private void buttonTrade_Click(object sender, EventArgs e)
@@ -122,5 +137,7 @@ namespace Assignment2_Archeology
 
 
         }
+
+
     }
 }
