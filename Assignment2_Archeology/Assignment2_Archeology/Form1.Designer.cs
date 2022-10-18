@@ -39,8 +39,9 @@
             this.buttonMuseum = new System.Windows.Forms.Button();
             this.pictureBoxMarketPlace = new System.Windows.Forms.PictureBox();
             this.pictureBoxPyramidCenter = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelPyramid1 = new System.Windows.Forms.Label();
             this.pictureBoxpyramid = new System.Windows.Forms.PictureBox();
+            this.labelDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCenter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer2)).BeginInit();
@@ -67,6 +68,7 @@
             this.pictureBoxPlayer1.TabIndex = 1;
             this.pictureBoxPlayer1.TabStop = false;
             this.pictureBoxPlayer1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxPlayer1_Paint);
+            this.pictureBoxPlayer1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxPlayer1_MouseClick);
             // 
             // pictureBoxPlayer2
             // 
@@ -95,7 +97,7 @@
             this.buttonDrawACard.BackColor = System.Drawing.Color.Crimson;
             this.buttonDrawACard.Font = new System.Drawing.Font("Bell MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDrawACard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonDrawACard.Location = new System.Drawing.Point(482, 269);
+            this.buttonDrawACard.Location = new System.Drawing.Point(529, 269);
             this.buttonDrawACard.Name = "buttonDrawACard";
             this.buttonDrawACard.Size = new System.Drawing.Size(114, 135);
             this.buttonDrawACard.TabIndex = 4;
@@ -108,7 +110,7 @@
             this.labelLeftover.AutoSize = true;
             this.labelLeftover.BackColor = System.Drawing.Color.Firebrick;
             this.labelLeftover.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLeftover.Location = new System.Drawing.Point(510, 355);
+            this.labelLeftover.Location = new System.Drawing.Point(557, 355);
             this.labelLeftover.Name = "labelLeftover";
             this.labelLeftover.Size = new System.Drawing.Size(58, 19);
             this.labelLeftover.TabIndex = 5;
@@ -157,7 +159,7 @@
             this.pictureBoxMarketPlace.BackColor = System.Drawing.Color.MistyRose;
             this.pictureBoxMarketPlace.Location = new System.Drawing.Point(22, 269);
             this.pictureBoxMarketPlace.Name = "pictureBoxMarketPlace";
-            this.pictureBoxMarketPlace.Size = new System.Drawing.Size(440, 135);
+            this.pictureBoxMarketPlace.Size = new System.Drawing.Size(501, 135);
             this.pictureBoxMarketPlace.TabIndex = 9;
             this.pictureBoxMarketPlace.TabStop = false;
             // 
@@ -170,18 +172,18 @@
             this.pictureBoxPyramidCenter.TabIndex = 10;
             this.pictureBoxPyramidCenter.TabStop = false;
             // 
-            // label1
+            // labelPyramid1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.SaddleBrown;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(798, 111);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 32);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "1 Map\r\n(3 Treasures)";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelPyramid1.AutoSize = true;
+            this.labelPyramid1.BackColor = System.Drawing.Color.SaddleBrown;
+            this.labelPyramid1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPyramid1.ForeColor = System.Drawing.Color.White;
+            this.labelPyramid1.Location = new System.Drawing.Point(798, 111);
+            this.labelPyramid1.Name = "labelPyramid1";
+            this.labelPyramid1.Size = new System.Drawing.Size(87, 32);
+            this.labelPyramid1.TabIndex = 11;
+            this.labelPyramid1.Text = "1 Map\r\n(3 Treasures)";
+            this.labelPyramid1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBoxpyramid
             // 
@@ -192,12 +194,23 @@
             this.pictureBoxpyramid.TabIndex = 12;
             this.pictureBoxpyramid.TabStop = false;
             // 
+            // labelDescription
+            // 
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(369, 494);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(68, 12);
+            this.labelDescription.TabIndex = 13;
+            this.labelDescription.Text = "Game Start";
+            this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 690);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.labelPyramid1);
             this.Controls.Add(this.pictureBoxpyramid);
             this.Controls.Add(this.pictureBoxPyramidCenter);
             this.Controls.Add(this.pictureBoxMarketPlace);
@@ -236,8 +249,9 @@
         private System.Windows.Forms.Button buttonMuseum;
         private System.Windows.Forms.PictureBox pictureBoxMarketPlace;
         private System.Windows.Forms.PictureBox pictureBoxPyramidCenter;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelPyramid1;
         private System.Windows.Forms.PictureBox pictureBoxpyramid;
+        private System.Windows.Forms.Label labelDescription;
     }
 }
 

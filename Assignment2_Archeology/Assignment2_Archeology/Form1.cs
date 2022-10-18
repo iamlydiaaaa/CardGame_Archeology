@@ -11,7 +11,7 @@ namespace Assignment2_Archeology
         //The number of cards which players and trade center belongs to
         public static int PLAYER_SIZE = 4;
         public static int TRADE_SIZE = 5;
-        public static int NUM_CARDS = 67;
+        public static int NUM_CARDS = 72;
 
         protected System.Resources.ResourceManager resource_manager;
 
@@ -23,14 +23,19 @@ namespace Assignment2_Archeology
         List<Card> Listplayer1 = new List<Card>();
         List<Card> Listplayer2 = new List<Card>();
 
-        public List<Card>[] PyramidCards = new List<Card>[3];
+        List<Card> Pyramid = new List<Card>();
+
         List<Card> PyramidThree = new List<Card>();
         List<Card> PyramidFive = new List<Card>();
         List<Card> PyramidSeven = new List<Card>();
 
         Deck deck;
+        Trade trade;
 
-        bool trade = false;
+        bool start = false;
+        bool active = false;
+        bool drawACard = false;
+        bool tradeMode = true;
 
         public Form1()
         {
@@ -42,52 +47,86 @@ namespace Assignment2_Archeology
 
         private void GetAHand()
         {
-
+            //보물카드 초기화 후 새로 섞음
             deck_card.Clear();
             marketPlace.Clear();
             Listplayer1.Clear();
             Listplayer2.Clear();
-
+            Invalidate();
 
             //make new random card lists
-            for (int i = 0; i < NUM_CARDS; i++)
+            foreach (Card c in deck.cards_)
             {
-                Treasure card = deck.GetCard(i);
+                Card card = deck.GetCard(cardIndex);
                 //card.UnFlip();
                 deck_card.Add(card);
-                Console.WriteLine("deck_card[" + i + "] = " + deck_card[i]);
+                Console.WriteLine("deck_card[" + cardIndex + "] = " + c);
                 cardIndex++;
             }
             deck.ShuffleCards();
         }
-        private void getRandomCards(Graphics graphics, List<Card> playerList, int CardSize, int cp, bool cardType)
+        private void getRandomCards(Graphics graphics, List<Card> playerList, int CardSize, bool cardType)
         {
             Random rand = new Random();
-            int CardPos = 10;
-            int CARD_GAP = 90;
+            int xpos = 10;
 
             //draw cards
             for (int i = 0; i < CardSize; i++)
             {
                 int randNum = rand.Next(1, cardIndex);
                 playerList.Add(deck_card[randNum]);
-                Treasure c = (Treasure)playerList[i];
+                Card c = playerList[i];
                 deck_card.RemoveAt(randNum);
                 cardIndex--;
 
                 //If the card type is not for pyramid cards, then execute the code
                 if (cardType)
                 {
-                    c.DrawCard(graphics, pictureBoxCenter, CardPos, c.Image);
-                    CardPos += CARD_GAP;
+                    c.DrawCard(graphics, pictureBoxCenter, xpos, c.Image);
+                   xpos += (c.Image.Width/4) +10;
+                    c.XPos = xpos;
                 }
-                labelLeftover.Text = cardIndex.ToString();
-                Console.WriteLine(cardIndex.ToString());
+                else
+                {
+                    labelPyramid1.Text = "3";
+                }
+                Console.WriteLine(cardIndex.ToString() + ". " + playerList[i]);
+                Console.WriteLine("XPos: " + c.XPos.ToString()+ " / YPos: " + c.YPos.ToString());
             }
 
-            
+            labelLeftover.Text = cardIndex.ToString();
+
         }
 
+        private void AddCards(Graphics graphics, List<Card> playerList, int CardSize, bool cardType)
+        {
+            Random rand = new Random();
+            int count = playerList.Count -1;
+            int xpos = playerList[count].XPos;
+
+            Console.WriteLine("***** " + xpos.ToString());
+
+            //draw cards
+            int randNum = rand.Next(1, cardIndex);
+            playerList.Add(deck_card[randNum]);
+            Card c = playerList[count+1];
+            deck_card.RemoveAt(randNum);
+            cardIndex--;
+
+            //If the card type is not for pyramid cards, then execute the code
+            c.DrawCard(graphics, pictureBoxCenter, xpos, c.Image);
+            xpos += (c.Image.Width / 4) + 10;
+            c.XPos = xpos;
+
+            Console.WriteLine(cardIndex.ToString() + ". " + playerList[count + 1]);
+            Console.WriteLine("XPos: " + c.XPos.ToString()+ " / YPos: " + c.YPos.ToString());
+
+            labelLeftover.Text = cardIndex.ToString();
+            foreach(Card card in playerList)
+            {
+                Console.WriteLine("이거는: " +card);
+            }
+        }
         private void buttonStart_Click(object sender, EventArgs e)
         {
             Graphics g = pictureBoxCenter.CreateGraphics();
@@ -100,15 +139,56 @@ namespace Assignment2_Archeology
             //t.Enabled = true;
             //t.Start();
 
+            //보물카드 새로 섞기
             cardIndex = 0;
             GetAHand();
-            getRandomCards(p1, Listplayer1,PLAYER_SIZE,10,true);
-            getRandomCards(p2, Listplayer2, PLAYER_SIZE,10,true);
-            getRandomCards(p3, marketPlace,5,10,true);
-            getRandomCards(g, PyramidThree,3,10,false);
 
-            Console.WriteLine(marketPlace.ToString());
+            //섞은 보물카드 나눠주기
+            Console.WriteLine("Players & MarketPlace added card");
+            getRandomCards(p1, Listplayer1,PLAYER_SIZE,true);
+            getRandomCards(p2, Listplayer2, PLAYER_SIZE,true);
+            getRandomCards(p3, marketPlace,5,true);
 
+            Console.WriteLine("Treasure Card added to the Pyramid");
+            getRandomCards(g, PyramidThree, 3, false);
+            getRandomCards(g, PyramidFive, 5, false);
+            getRandomCards(g, PyramidSeven, 7, false);
+
+            Console.WriteLine("Additional Card added to the Pyramid");
+            addCardtoDeck(new Map());
+            addCardtoDeck(new Thief());
+            addCardtoDeck(new SandStorm());
+
+
+            //foreach (Card card in deck_card)
+            //{
+            //    Console.WriteLine("Deck에 남은 카드: " + card + " / ");
+            //}
+
+
+            start = true;
+            if (start)
+            {
+                buttonStart.Text = "RESTART";
+                labelLeftover.Text = cardIndex.ToString();
+
+            }
+        }
+
+        private void addCardtoDeck(Card c)
+        {
+            Console.Write(c.CardName + "카드 deck에 추가");
+            for (int k = 1; k <= c.CardNum; k++)
+            {
+                //card.UnFlip();
+                deck_card.Add(c);
+                cardIndex++;
+            }            
+        }
+
+        private void Action()
+        {
+            labelDescription.Text = "Choose Actions.";
         }
 
         // Specify what you want to happen when the Elapsed event is raised.
@@ -126,18 +206,74 @@ namespace Assignment2_Archeology
 
         private void buttonDrawACard_Click(object sender, EventArgs e)
         {
-            Graphics p1 = pictureBoxPlayer1.CreateGraphics();
-            getRandomCards(p1, Listplayer1, 1,330,true);
+            if (start)
+            {
+                Graphics p1 = pictureBoxPlayer1.CreateGraphics();
+                AddCards(p1, Listplayer1, 1, true);
+                active = true;
+                if (active)
+                {
+                    Action();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please start the game first.");
+            }
+
+            //trade활성화
+            active = true;
         }
 
         private void buttonTrade_Click(object sender, EventArgs e)
         {
-            //trade활성화
-            trade = true;
-
+            if (active)
+            {
+                labelDescription.Text = "Trade Mode";
+                tradeMode = true;
+            }
+            else
+            {
+                MessageBox.Show("Unavailable !");
+            }
+            //trade = new Trade(marketPlace);
 
         }
 
 
+        private void pictureBoxPlayer1_MouseClick(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("누름 : " + e.X.ToString() + ", " + e.Y.ToString());
+
+            if (tradeMode)
+            {
+
+                trade = new Trade(Listplayer1);
+                foreach (Card card in Listplayer1)
+                {
+                    Console.WriteLine(card.ToString() + ": " + card.XPos.ToString() + ", " + card.YPos.ToString());
+                    if (card.IsMouseOn(e.X, e.Y))
+                    {
+                        trade.Selected = true;
+                        //trade.tradeSum += card.TradeValue;
+                        Console.WriteLine("성공, value: " + card.TradeValue.ToString());
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("실패 : " + e.X.ToString() + ", " + e.Y.ToString());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Unavailable 2 !");
+            }
+        }
+
+        private void Close()
+        {
+            Application.Exit();
+        }
     }
 }

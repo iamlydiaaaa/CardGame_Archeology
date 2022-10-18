@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Drawing;
+using System.Resources;
+using System.Windows.Forms;
+
+namespace Assignment2_Archeology
+{
+    internal class Talisman : Treasure
+    {
+        public string value_ = "talisman";
+        public Talisman()
+        {
+            CardName_ = this.value_;
+            CardNum_ = 8;
+            TradeValue_ = 3;
+            SellingValue_ = 3;
+        }
+        public override string getResourceId()
+        {
+            return this.value_.ToLower();
+        }
+
+        public override string ToString()
+        {
+            return "* [" + CardName_ + "] " + CardNum_.ToString() + ", " + TradeValue_.ToString() + ", " + SellingValue_.ToString();
+        }
+    }
+}

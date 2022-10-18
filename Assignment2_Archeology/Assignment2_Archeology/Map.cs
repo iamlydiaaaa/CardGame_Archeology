@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Resources;
+using System.Windows.Forms;
 
 namespace Assignment2_Archeology
 {
-    public class Map
+    public class Map : Treasure
     {
-        public int MapNum = 6;
-        public string name = "map";
+        public string value_ = "map";
         public Map()
         {
-
+            CardName_ = this.value_;
+            CardNum_ = 6;
+            TradeValue_ = 3;
+            SellingValue_ = 3;
         }
 
-/*        public override string getResourceId()
+        public override string getResourceId()
         {
-            Console.WriteLine("이 카드는 " + name);
-            return name;
-        }*/
-
-
+            return this.value_.ToLower();
+        }
 
         public override string ToString()
         {
-            return name;
+            return "* [" + CardName_ + "] " + CardNum_.ToString() + ", " + TradeValue_.ToString() + ", " + SellingValue_.ToString();
         }
     }
 }

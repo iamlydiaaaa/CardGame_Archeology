@@ -19,12 +19,49 @@ namespace Assignment2_Archeology
         protected bool flip = false;
         protected List<Deck> decks = new List<Deck>();
 
+        protected String CardName_;
         protected int CardNum_;
         protected int TradeValue_;
         protected int SellingValue_;
 
+        protected int XPos_;
+        protected int YPos_;
 
-        public Card(int cardNum, int sellingVal, int tradeVal, Image image)
+        // left is the left-hand edge of the main part of the gate.
+        // So the input pins are further left than left.
+        protected int _left;
+
+        // top is the top of the whole gate
+        protected int _top;
+
+        public Card(int left, int top)
+        {
+            _left = left;
+            _top = top;
+        }
+        public virtual int Left
+        {
+            get { return _left; }
+        }
+
+        /// <summary>
+        /// Gets the top edge of the gate.
+        /// </summary>
+        public virtual int Top
+        {
+            get { return _top; }
+        }
+
+        public virtual bool IsMouseOn(int x, int y)
+        {
+            if (x >= XPos_ - image_.Width && x < XPos_ 
+                && x >= YPos_ && x < YPos_ + image_.Height)
+                return true;
+            else
+                return false;
+        }
+
+        public Card(string CardName_, int cardNum, int sellingVal, int tradeVal)
         {
             CardNum_ = cardNum;
             TradeValue_ = tradeVal;
@@ -38,7 +75,16 @@ namespace Assignment2_Archeology
             
         }
 
-
+        public int XPos
+        {
+            get { return XPos_; }
+            set { XPos_ = value; }
+        }
+        public int YPos
+        {
+            get { return YPos_; }
+            set { YPos_ = value; }
+        }
         public Image Image
         {
             get { return image_; }
@@ -52,12 +98,26 @@ namespace Assignment2_Archeology
         {
             get { return decks;}
         }
-        public int CardNum { get { return CardNum_; } }
-        public int TradeValue { get { return TradeValue_; } }
-        protected int SellingValue { get { return SellingValue_; } }
+        public string CardName
+        {
+            get { return CardName_; }
+            set { CardName_ = value; }
+        }
+        public int CardNum { 
+            get { return CardNum_; } 
+            set { CardNum_ = value; }
+        }
+        public int TradeValue { 
+            get { return TradeValue_; } 
+            set { TradeValue_ = value; }
+        }
+        protected int SellingValue { 
+            get { return SellingValue_; } 
+            set { SellingValue_ = value; }
+        }
 
         public abstract void DrawCard(Graphics g, PictureBox p, int cardPos, Image image);
-        public abstract void Draw(Graphics g, PictureBox p, int cardPos, Image image);
+        //public abstract void Draw(Graphics g, PictureBox p, int cardPos, Image image);
 
         /// <summary>
         /// Get the id of resource, to get each image to draw.
