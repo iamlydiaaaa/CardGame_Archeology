@@ -19,3 +19,13 @@ D:\WAIKATO\COMPX102\Assignment2_ver2\CardGame_Archeology\Assignment2_Archeology\
 D:\WAIKATO\COMPX102\Assignment2_ver2\CardGame_Archeology\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csproj.CoreCompileInputs.cache
 D:\WAIKATO\COMPX102\Assignment2_ver2\CardGame_Archeology\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.exe
 D:\WAIKATO\COMPX102\Assignment2_ver2\CardGame_Archeology\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.pdb
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\bin\Debug\Assignment2_Archeology.exe.config
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\bin\Debug\Assignment2_Archeology.exe
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\bin\Debug\Assignment2_Archeology.pdb
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csprojAssemblyReference.cache
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.Form1.resources
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.Properties.Resources.resources
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csproj.GenerateResource.cache
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.csproj.CoreCompileInputs.cache
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.exe
+C:\Users\kg093\Downloads\Assignment2\Assignment2_Archeology\Assignment2_Archeology\obj\Debug\Assignment2_Archeology.pdb

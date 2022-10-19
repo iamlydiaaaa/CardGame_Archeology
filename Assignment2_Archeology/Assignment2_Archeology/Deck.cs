@@ -1,53 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using System.Resources;
-using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Assignment2_Archeology
 {
     public class Deck
     {
-        //public Card[] cards_;
-        public List<Card> cards_;
+        public Card[] cards_;
         public int[] array1 = new int[] { 18, 16, 14, 8, 6, 4};
-        public int cardIndex = 0;
         public Deck()
         {
 
             //Card[]에 카드 72개를 집어 넣는다.
-            cards_ = new List<Card>();
-            //cards_ = new Card[5];
             int i = 0;
+            int cardIndex = 0;
             
 
-            foreach (TreasureCardValue value in Enum.GetValues(typeof(TreasureCardValue)))
-            {
-                for(int k = 1; k <= array1[i]; k++)
-                {
-                    cards_.Add(new Treasure(value));
+                    cards_ = new Card[Form1.NUM_CARDS];
+                    foreach (TreasureCardValue value in Enum.GetValues(typeof(TreasureCardValue)))
+                    {
+                        for (int k = 0; k < array1[i]; k++)
+                        {
+                            cards_[cardIndex] = new Treasure(value);
+                            cardIndex++;
+                            Console.WriteLine("-- Deck.cs_line_33 :cards_[" + cardIndex + "] = " + cards_[cardIndex]);
 
-                    cardIndex++;
-                }
-                i++;
-            }
-/*            for (int k = 1; k <= 6; k++)
-            {
-                cards_[cardIndex] = new Map();
+                        }
+                        i++;
+                    }
+                    for (int k = 0; k < 6; k++)
+                    {
+                        cards_[cardIndex] = new Map();
+                        cardIndex++;
+                        Console.WriteLine("-- Map.cs_line_33 :cards_[" + cardIndex + "] = " + cards_[cardIndex]);
 
-                cardIndex++;
-            }*/
-/*            for (int j = 0; j< cardIndex; j++)
-            {
-            Console.WriteLine("-- Deck.cs_line_33 :cards_[" + j + "] = " + cards_[j]);
-            }*/
-            //foreach(Card c in cards_)
-            //{
-            //    Console.WriteLine("-- Deck.cs_line_33 : = " + c);
-
-            //}
-
+                    }
+            
+            Console.WriteLine(cardIndex);
+            
 
             //ShuffleCards();
         }
@@ -55,10 +44,10 @@ namespace Assignment2_Archeology
         public void ShuffleCards()
         {
             Random rnd = new Random();
-            for(int i = 0; i < cards_.Count; i++)
+            for(int i = 0; i < Form1.NUM_CARDS; i++)
             {
-                int cardPos1 = rnd.Next(0, cards_.Count);
-                int cardPos2 = rnd.Next(0, cards_.Count);
+                int cardPos1 = rnd.Next(0, Form1.NUM_CARDS);
+                int cardPos2 = rnd.Next(0, Form1.NUM_CARDS);
 
                 SwapCards(cardPos1, cardPos2);
             }
@@ -93,7 +82,7 @@ namespace Assignment2_Archeology
         {
             foreach (Treasure card in cards_)
             {
-                Console.WriteLine(card);
+                Debug.WriteLine(card);
             }
         }
 
