@@ -19,55 +19,18 @@ namespace Assignment2_Archeology
         protected bool flip = false;
         protected List<Deck> decks = new List<Deck>();
 
-        protected String CardName_;
+        protected string CardName_;
         protected int CardNum_;
         protected int TradeValue_;
         protected int SellingValue_;
 
-        protected int XPos_;
-        protected int YPos_;
 
-        // left is the left-hand edge of the main part of the gate.
-        // So the input pins are further left than left.
-        protected int _left;
-
-        // top is the top of the whole gate
-        protected int _top;
-
-        public Card(int left, int top)
-        {
-            _left = left;
-            _top = top;
-        }
-        public virtual int Left
-        {
-            get { return _left; }
-        }
-
-        /// <summary>
-        /// Gets the top edge of the gate.
-        /// </summary>
-        public virtual int Top
-        {
-            get { return _top; }
-        }
-
-        public virtual bool IsMouseOn(int x, int y)
-        {
-            if (x >= XPos_ - image_.Width && x < XPos_ 
-                && x >= YPos_ && x < YPos_ + image_.Height)
-                return true;
-            else
-                return false;
-        }
-
-        public Card(string CardName_, int cardNum, int sellingVal, int tradeVal)
+        public Card(int cardNum, int sellingVal, int tradeVal, string cardName)
         {
             CardNum_ = cardNum;
             TradeValue_ = tradeVal;
             SellingValue_ = sellingVal;
-
-            
+            CardName_ = cardName;
         }
 
         public Card()
@@ -75,16 +38,12 @@ namespace Assignment2_Archeology
             
         }
 
-        public int XPos
+        public String CardName
         {
-            get { return XPos_; }
-            set { XPos_ = value; }
+            get { return CardName_; }
+            set { CardName_ = value; }
         }
-        public int YPos
-        {
-            get { return YPos_; }
-            set { YPos_ = value; }
-        }
+
         public Image Image
         {
             get { return image_; }
@@ -98,26 +57,36 @@ namespace Assignment2_Archeology
         {
             get { return decks;}
         }
-        public string CardName
+        public int CardNum
         {
-            get { return CardName_; }
-            set { CardName_ = value; }
-        }
-        public int CardNum { 
-            get { return CardNum_; } 
+            get { return CardNum_; }
             set { CardNum_ = value; }
         }
         public int TradeValue { 
             get { return TradeValue_; } 
             set { TradeValue_ = value; }
         }
-        protected int SellingValue { 
-            get { return SellingValue_; } 
+        protected int SellingValue {
+            get { return SellingValue_; }
             set { SellingValue_ = value; }
         }
 
-        public abstract void DrawCard(Graphics g, PictureBox p, int cardPos, Image image);
-        //public abstract void Draw(Graphics g, PictureBox p, int cardPos, Image image);
+        public virtual void DrawCard(Graphics g, PictureBox p, int cardPos, Image image)
+        {
+            //image_ = image;
+            int cardWidth = image.Width / 4;
+            int cardHeight = image.Height / 4;
+            int gap = 10;
+
+            int display_x_dim = p.Width; //그림의 가로세로값
+            int display_y_dim = p.Height;
+            int y = 10;
+
+            g.DrawImage(image, cardPos, y, cardWidth, cardHeight);
+            //Console.WriteLine(image.ToString()+" 그림 그렸음");
+            getResourceId();
+        }
+        public abstract void Draw(Graphics g, PictureBox p, int cardPos, Image image);
 
         /// <summary>
         /// Get the id of resource, to get each image to draw.

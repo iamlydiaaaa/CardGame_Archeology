@@ -7,25 +7,51 @@ using System.Windows.Forms;
 
 namespace Assignment2_Archeology
 {
-    public class Map : Treasure
+    public class Map : Card
     {
-        public string value_ = "map";
+        public int MapCount = 6;
+        public string name = "map";
+
         public Map()
         {
-            CardName_ = this.value_;
-            CardNum_ = 6;
-            TradeValue_ = 3;
-            SellingValue_ = 3;
+            string resource_id = getResourceId();
+            image_ = (Image)re_manager.GetObject(name);
+        }
+        public Map(int cardNum, int sellingVal, int tradeVal, string cardName): base(cardNum,sellingVal,tradeVal, cardName)
+        {
+            string resource_id = getResourceId();
+            image_ = (Image)re_manager.GetObject(resource_id);
+            backImage_ = (Image)re_manager.GetObject("cardback");
+            CardName_ = "map";
+        }
+        public Map(Map map)
+        {
+            CardName_ = map.CardName_;
+            string resource_id = getResourceId();
+            image_ = (Image)re_manager.GetObject(resource_id);
         }
 
+
+        public override void Draw(Graphics g, PictureBox p, int cardPos, Image image)
+        {
+
+        }
+
+        /// <summary>
+        /// Get the id of resource, to get each image to draw.
+        /// </summary>
+        /// <returns></returns>
         public override string getResourceId()
         {
-            return this.value_.ToLower();
+            Console.WriteLine(CardName_);
+            return CardName_;
         }
+
+
 
         public override string ToString()
         {
-            return "* [" + CardName_ + "] " + CardNum_.ToString() + ", " + TradeValue_.ToString() + ", " + SellingValue_.ToString();
+            return CardName_;
         }
     }
 }

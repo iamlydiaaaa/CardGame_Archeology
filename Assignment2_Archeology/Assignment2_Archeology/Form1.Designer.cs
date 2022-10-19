@@ -41,7 +41,8 @@
             this.pictureBoxPyramidCenter = new System.Windows.Forms.PictureBox();
             this.labelPyramid1 = new System.Windows.Forms.Label();
             this.pictureBoxpyramid = new System.Windows.Forms.PictureBox();
-            this.labelDescription = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCenter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer2)).BeginInit();
@@ -68,7 +69,6 @@
             this.pictureBoxPlayer1.TabIndex = 1;
             this.pictureBoxPlayer1.TabStop = false;
             this.pictureBoxPlayer1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxPlayer1_Paint);
-            this.pictureBoxPlayer1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxPlayer1_MouseClick);
             // 
             // pictureBoxPlayer2
             // 
@@ -84,7 +84,7 @@
             this.buttonStart.BackColor = System.Drawing.Color.MidnightBlue;
             this.buttonStart.Font = new System.Drawing.Font("Bell MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStart.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonStart.Location = new System.Drawing.Point(672, 530);
+            this.buttonStart.Location = new System.Drawing.Point(962, 542);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(133, 43);
             this.buttonStart.TabIndex = 3;
@@ -97,7 +97,7 @@
             this.buttonDrawACard.BackColor = System.Drawing.Color.Crimson;
             this.buttonDrawACard.Font = new System.Drawing.Font("Bell MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDrawACard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonDrawACard.Location = new System.Drawing.Point(529, 269);
+            this.buttonDrawACard.Location = new System.Drawing.Point(514, 269);
             this.buttonDrawACard.Name = "buttonDrawACard";
             this.buttonDrawACard.Size = new System.Drawing.Size(114, 135);
             this.buttonDrawACard.TabIndex = 4;
@@ -110,7 +110,7 @@
             this.labelLeftover.AutoSize = true;
             this.labelLeftover.BackColor = System.Drawing.Color.Firebrick;
             this.labelLeftover.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLeftover.Location = new System.Drawing.Point(557, 355);
+            this.labelLeftover.Location = new System.Drawing.Point(542, 354);
             this.labelLeftover.Name = "labelLeftover";
             this.labelLeftover.Size = new System.Drawing.Size(58, 19);
             this.labelLeftover.TabIndex = 5;
@@ -122,7 +122,7 @@
             this.buttonTrade.BackColor = System.Drawing.Color.LightSteelBlue;
             this.buttonTrade.Font = new System.Drawing.Font("Bell MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonTrade.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonTrade.Location = new System.Drawing.Point(672, 589);
+            this.buttonTrade.Location = new System.Drawing.Point(962, 601);
             this.buttonTrade.Name = "buttonTrade";
             this.buttonTrade.Size = new System.Drawing.Size(133, 26);
             this.buttonTrade.TabIndex = 6;
@@ -135,7 +135,7 @@
             this.buttonExplore.BackColor = System.Drawing.Color.LightSteelBlue;
             this.buttonExplore.Font = new System.Drawing.Font("Bell MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExplore.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonExplore.Location = new System.Drawing.Point(672, 621);
+            this.buttonExplore.Location = new System.Drawing.Point(962, 633);
             this.buttonExplore.Name = "buttonExplore";
             this.buttonExplore.Size = new System.Drawing.Size(133, 26);
             this.buttonExplore.TabIndex = 7;
@@ -147,7 +147,7 @@
             this.buttonMuseum.BackColor = System.Drawing.Color.LightSteelBlue;
             this.buttonMuseum.Font = new System.Drawing.Font("Bell MT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMuseum.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonMuseum.Location = new System.Drawing.Point(672, 653);
+            this.buttonMuseum.Location = new System.Drawing.Point(962, 665);
             this.buttonMuseum.Name = "buttonMuseum";
             this.buttonMuseum.Size = new System.Drawing.Size(133, 26);
             this.buttonMuseum.TabIndex = 8;
@@ -159,7 +159,7 @@
             this.pictureBoxMarketPlace.BackColor = System.Drawing.Color.MistyRose;
             this.pictureBoxMarketPlace.Location = new System.Drawing.Point(22, 269);
             this.pictureBoxMarketPlace.Name = "pictureBoxMarketPlace";
-            this.pictureBoxMarketPlace.Size = new System.Drawing.Size(501, 135);
+            this.pictureBoxMarketPlace.Size = new System.Drawing.Size(486, 135);
             this.pictureBoxMarketPlace.TabIndex = 9;
             this.pictureBoxMarketPlace.TabStop = false;
             // 
@@ -180,7 +180,7 @@
             this.labelPyramid1.ForeColor = System.Drawing.Color.White;
             this.labelPyramid1.Location = new System.Drawing.Point(798, 111);
             this.labelPyramid1.Name = "labelPyramid1";
-            this.labelPyramid1.Size = new System.Drawing.Size(87, 32);
+            this.labelPyramid1.Size = new System.Drawing.Size(88, 32);
             this.labelPyramid1.TabIndex = 11;
             this.labelPyramid1.Text = "1 Map\r\n(3 Treasures)";
             this.labelPyramid1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,22 +194,31 @@
             this.pictureBoxpyramid.TabIndex = 12;
             this.pictureBoxpyramid.TabStop = false;
             // 
-            // labelDescription
+            // listBox1
             // 
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(369, 494);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(68, 12);
-            this.labelDescription.TabIndex = 13;
-            this.labelDescription.Text = "Game Start";
-            this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(658, 16);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(127, 136);
+            this.listBox1.TabIndex = 13;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 12;
+            this.listBox2.Location = new System.Drawing.Point(658, 544);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(127, 136);
+            this.listBox2.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1128, 690);
-            this.Controls.Add(this.labelDescription);
+            this.ClientSize = new System.Drawing.Size(1120, 738);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.labelPyramid1);
             this.Controls.Add(this.pictureBoxpyramid);
             this.Controls.Add(this.pictureBoxPyramidCenter);
@@ -251,7 +260,8 @@
         private System.Windows.Forms.PictureBox pictureBoxPyramidCenter;
         private System.Windows.Forms.Label labelPyramid1;
         private System.Windows.Forms.PictureBox pictureBoxpyramid;
-        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 
